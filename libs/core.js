@@ -20,6 +20,10 @@ function ensure(obj, name, factory) {
 }
 
 function angularDecorator () {
+    // https://docs.angularjs.org/error/$injector/modulerr
+    if (arguments[0] === 'ng')
+        return angularModule.apply(angular, arguments);
+
     if (arguments.length === 1)
         return angularModule.apply(angular, arguments);
 
@@ -32,30 +36,56 @@ function angularDecorator () {
      *   @key {String} template - html template string
      */
     module.block = function moduleBlock (name, constructor, props) {
-        ensure(blocks, name, constructor);
-    }
-
-    return module;
-}
-
-angular.module('ng').directive('block', [ '$injector', '$parse', function ($injector) {
-    return {
-        rectrict: 'A',
-        priority: 1000,
-        terminate: true,
-        scope: {
-            data '=?init'
-        },
-        compile: {
-            pre: function ($scope, $element, $attrs) {
-                console.log('xxx');
-            },
-
-            post: function ($scope, $element, $attrs) {
-            }
+        var m = ensure(blocks, module.name, Object);
+        console.log('m', m)
+        m[name] = {
+            fn: constructor,
+            props: props
         }
     }
 
-}]);
+    module.directive('block', [ '$injector', function ($injector) {
+        return {
+            rectrict: 'E',
+            priority: 1000,
+            terminate: true,
+            replace: true,
+            scope: {
+                data: '=?init'
+            },
+
+            template: function ($element, $attrs) {
+                var block = getBlockByName($attrs.block);
+
+                return block.props.template;
+            },
+
+            compile: function () {
+                var block;
+
+                return {
+                    pre: function ($scope, $element, $attrs) {
+                        block = getBlockByName($attrs.block);
+                    },
+
+                    post: function ($scope, $element, $attrs) {
+                    }
+                }
+            }
+        }
+
+        function getBlockByName (name) {
+            try {
+                return blocks[module.name][name];
+            } catch (e) {
+                throw new Error('Couldn\'t get block constructor, module:', module.name, 'block name:', name, '\n', e);
+            }
+        }
+
+    }]);
+
+
+    return module;
+}
 
 })(window);
