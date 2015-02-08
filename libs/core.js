@@ -37,18 +37,17 @@ function angularDecorator () {
      */
     module.block = function moduleBlock (name, constructor, props) {
         var m = ensure(blocks, module.name, Object);
-        console.log('m', m)
         m[name] = {
             fn: constructor,
             props: props
         }
     }
 
-    module.directive('block', [ '$injector', function ($injector) {
+    module.directive('block', [ '$injector', '$compile', function ($injector, $compile) {
         return {
             rectrict: 'E',
             priority: 1000,
-            terminate: true,
+            terminal: true,
             replace: true,
             scope: {
                 data: '=?init'
@@ -69,6 +68,8 @@ function angularDecorator () {
                     },
 
                     post: function ($scope, $element, $attrs) {
+                        $element.removeAttr('block');
+                        $compile($element)($scope);
                     }
                 }
             }
