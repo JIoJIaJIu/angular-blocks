@@ -1,0 +1,31 @@
+{
+  "name": "angular-blocks",
+  "version": "0.0.0",
+  "description": "Angular like BEM",
+  "main": "angular-blocks.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "gulp": "^3.8.10",
+    "gulp-concat": "^2.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JIoJIaJIu/angular-blocks.git"
+  },
+  "keywords": [
+    "angular",
+    "bem"
+  ],
+  "author": "Guro Bokum",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JIoJIaJIu/angular-blocks/issues"
+  },
+  "homepage": "https://github.com/JIoJIaJIu/angular-blocks"
+}
