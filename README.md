@@ -16,7 +16,7 @@ Block - is independent angular directive with isolated scope, replace: true, ter
 ##CSS
 
 In terms of BEM (http://bem.info)  
-There are such subject as block, element, modificator and state
+There are such subjects as block, element, modificator and state
 
 * block ( .block {} )
 * element ( .block_element {} )
