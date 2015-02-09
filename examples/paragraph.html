@@ -7,23 +7,20 @@
     <script type="text/javascript">
 
         var module = angular.module('myApp', []);
-        module.block('checkbox', function () {
+        module.block('paragraph', function ($scope, $element, $attrs, props) {
+            $scope.text = reverse($scope.data);
         }, {
-            template: "<span></span>"
+            template: "<p>{{text}}</p>"
         });
 
-        module.controller('A', function () {
-            console.log('controllerA');
-        });
-
-        module.controller('B', function () {
-            console.log('controllerB');
-        });
+        function reverse (str) {
+            return str && str.split("").reverse().join("");
+        }
     </script>
 </head>
 
 <body ng-app="myApp">
-    <div block="checkbox" ng-controller="A"></div>
-    <div block="checkbox" ng-controller="B"></div>
+    <div block="paragraph" data-init="'This is Sparta!'"></div>
+    <div block="paragraph">This is Sparta!</div>
 </body>
 </html>
