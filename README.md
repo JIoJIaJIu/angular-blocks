@@ -1,5 +1,7 @@
 #Angular-Blocks
 
+[![Build Status](https://travis-ci.org/JIoJIaJIu/angular-blocks.svg?branch=master)](https://travis-ci.org/JIoJIaJIu/angular-blocks)
+
 There is framework for using Angular in terms of blocks  
 What means block?
 
