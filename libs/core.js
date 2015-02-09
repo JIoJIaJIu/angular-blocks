@@ -87,7 +87,7 @@ function angularDecorator () {
             try {
                 return blocks[module.name][name];
             } catch (e) {
-                throw new Error('Couldn\'t get block constructor, module:', module.name, 'block name:', name, '\n', e);
+                throw new Error('Couldn\'t get block constructor, module: ' + module.name + ' block name: ' + name + '\n' + e);
             }
         }
 
