@@ -59,7 +59,7 @@ function angularDecorator () {
                 return block.props.template;
             },
 
-            compile: function () {
+            compile: function ($scope, $element, $attrs) {
                 var block;
 
                 return {
@@ -69,7 +69,15 @@ function angularDecorator () {
 
                     post: function ($scope, $element, $attrs) {
                         $element.removeAttr('block');
+                        var directive = new block.fn($scope, $element, $attrs, block.props);
+                        $scope.$on('$destroy', function () {
+                            if (directive.finalize)
+                                directive.finalize();
+                        });
                         $compile($element)($scope);
+
+                        if (directive.init)
+                            directive.init();
                     }
                 }
             }
