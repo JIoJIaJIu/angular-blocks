@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "gulp": "^3.8.10",
-    "gulp-concat": "^2.4.3"
+    "gulp-concat": "^2.4.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.1.0"
   },
   "devDependencies": {},
   "scripts": {
