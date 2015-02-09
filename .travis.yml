@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-    - "0.10"
+- '0.10'
 script:
-    - ./node_modules/gulp/bin/gulp.js
+- ./node_modules/gulp/bin/gulp.js
+deploy:
+  provider: releases
+  api_key:
+    secure: RJJDEifZD6k2dss6ugaEyyHfS4KYZ/QxDd2Vsa1YHSL2SIxxZHmMNRm1175FnB0qaxl8N6EhOX0O+eTs8OlZjI4fPEFX94FydFEmrC5lp4lZ86leG0jqINb0d9PcG5AMf/THvGyq3EDKInPijoDO8ipPHKJzL9dWviPwnDTRgRs=
+  file: angular-blocks.min.js
+  on:
+    repo: JIoJIaJIu/angular-blocks
